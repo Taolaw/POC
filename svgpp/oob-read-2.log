@@ -1,0 +1,10 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==6055==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000000 (pc 0x560f757abbfd bp 0x7ffcd2292bf0 sp 0x7ffcd2292be0 T0)
+==6055==The signal is caused by a READ memory access.
+==6055==Hint: address points to the zero page.
+    #0 0x560f757abbfc in rapidxml_ns::xml_base<char>::local_name() const /home/ubuntu/svgpp/src/demo/render/../../../third_party/rapidxml_ns/rapidxml_ns.hpp:882
+    #1 0x560f7579ae5f in svgpp::policy::xml::element_iterator<rapidxml_ns::xml_node<char> const*>::get_local_name(rapidxml_ns::xml_node<char> const*) /home/ubuntu/svgpp/src/demo/render/../../../include/svgpp/policy/xml/rapidxml_ns.hpp:127
+==6055==AddressSanitizer CHECK failed: ../../../../src/libsanitizer/sanitizer_common/sanitizer_allocator_bytemap.h:66 "((0U)) == ((map2[idx % kSize2]))" (0x0, 0x96)
+==6055==AddressSanitizer CHECK failed: ../../../../src/libsanitizer/sanitizer_common/sanitizer_linux.cc:664 "((owner_)) == ((0))" (0x7fe37b7596c8, 0x0)
+

@@ -1,0 +1,15 @@
+AddressSanitizer:DEADLYSIGNAL
+=================================================================
+==5662==ERROR: AddressSanitizer: SEGV on unknown address 0x000000000018 (pc 0x555f60b40739 bp 0x7ffef3e44200 sp 0x7ffef3e441f0 T0)
+==5662==The signal is caused by a READ memory access.
+==5662==Hint: address points to the zero page.
+    #0 0x555f60b40738 in agg::row_accessor<unsigned char>::stride() const (/home/luna/tmp/debug/bin/svgpp_agg_render+0x1410738)
+    #1 0x555f60b326ff in agg::pixfmt_alpha_blend_rgba<agg::blender_rgba<agg::rgba8T<agg::linear>, agg::order_rgba>, agg::row_accessor<unsigned char> >::stride() const (/home/luna/tmp/debug/bin/svgpp_agg_render+0x14026ff)
+    #2 0x555f60b12043 in main /home/ubuntu/svgpp/src/demo/render/svgpp_render.cpp:1709
+    #3 0x7fd5e3e9fb6a in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x26b6a)
+    #4 0x555f60aff8ed in _start (/home/luna/tmp/debug/bin/svgpp_agg_render+0x13cf8ed)
+
+AddressSanitizer can not provide additional info.
+SUMMARY: AddressSanitizer: SEGV (/home/luna/tmp/debug/bin/svgpp_agg_render+0x1410738) in agg::row_accessor<unsigned char>::stride() const
+==5662==ABORTING
+
