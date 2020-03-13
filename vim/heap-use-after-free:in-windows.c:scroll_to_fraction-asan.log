@@ -1,0 +1,104 @@
+=================================================================
+==24917==ERROR: AddressSanitizer: heap-use-after-free on address 0x62500000c900 at pc 0x5644d08a0ebe bp 0x7ffd2f95c550 sp 0x7ffd2f95c540
+READ of size 8 at 0x62500000c900 thread T0
+    #0 0x5644d08a0ebd in scroll_to_fraction /home/luna/tmp/debug/vim/src/window.c:6101
+    #1 0x5644d08a0ce6 in win_new_height /home/luna/tmp/debug/vim/src/window.c:6084
+    #2 0x5644d08933b9 in frame_new_height /home/luna/tmp/debug/vim/src/window.c:3059
+    #3 0x5644d088991f in win_split_ins /home/luna/tmp/debug/vim/src/window.c:1243
+    #4 0x5644d02d7d80 in aucmd_prepbuf /home/luna/tmp/debug/vim/src/autocmd.c:1468
+    #5 0x5644d0677165 in load_dummy_buffer /home/luna/tmp/debug/vim/src/quickfix.c:6204
+    #6 0x5644d0674abb in vgr_load_dummy_buf /home/luna/tmp/debug/vim/src/quickfix.c:5662
+    #7 0x5644d067598c in vgr_process_files /home/luna/tmp/debug/vim/src/quickfix.c:5927
+    #8 0x5644d06765f8 in ex_vimgrep /home/luna/tmp/debug/vim/src/quickfix.c:6072
+    #9 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #10 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #11 0x5644d06fc652 in do_source /home/luna/tmp/debug/vim/src/scriptfile.c:1365
+    #12 0x5644d06fa9d1 in cmd_source /home/luna/tmp/debug/vim/src/scriptfile.c:933
+    #13 0x5644d06faa3e in ex_source /home/luna/tmp/debug/vim/src/scriptfile.c:959
+    #14 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #15 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #16 0x5644d0429d84 in do_cmdline_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:589
+    #17 0x5644d092e102 in exe_commands /home/luna/tmp/debug/vim/src/main.c:3139
+    #18 0x5644d0927204 in vim_main2 /home/luna/tmp/debug/vim/src/main.c:795
+    #19 0x5644d0926ac3 in main /home/luna/tmp/debug/vim/src/main.c:444
+    #20 0x7f4f4d84db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+    #21 0x5644d02c9669 in _start (/home/luna/tmp/debug/vim_crash/asan+0x105669)
+
+0x62500000c900 is located 0 bytes inside of 9080-byte region [0x62500000c900,0x62500000ec78)
+freed by thread T0 here:
+    #0 0x7f4f4e4c77a8 in __interceptor_free (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xde7a8)
+    #1 0x5644d0573fda in vim_free /home/luna/tmp/debug/vim/src/misc2.c:1803
+    #2 0x5644d02e37dc in free_buffer /home/luna/tmp/debug/vim/src/buffer.c:941
+    #3 0x5644d02e294f in close_buffer /home/luna/tmp/debug/vim/src/buffer.c:729
+    #4 0x5644d02fdfd5 in wipe_buffer /home/luna/tmp/debug/vim/src/buffer.c:5674
+    #5 0x5644d067770b in wipe_dummy_buffer /home/luna/tmp/debug/vim/src/quickfix.c:6282
+    #6 0x5644d0675d61 in vgr_process_files /home/luna/tmp/debug/vim/src/quickfix.c:5977
+    #7 0x5644d06765f8 in ex_vimgrep /home/luna/tmp/debug/vim/src/quickfix.c:6072
+    #8 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #9 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #10 0x5644d06fc652 in do_source /home/luna/tmp/debug/vim/src/scriptfile.c:1365
+    #11 0x5644d06fa9d1 in cmd_source /home/luna/tmp/debug/vim/src/scriptfile.c:933
+    #12 0x5644d06faa3e in ex_source /home/luna/tmp/debug/vim/src/scriptfile.c:959
+    #13 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #14 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #15 0x5644d0429d84 in do_cmdline_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:589
+    #16 0x5644d092e102 in exe_commands /home/luna/tmp/debug/vim/src/main.c:3139
+    #17 0x5644d0927204 in vim_main2 /home/luna/tmp/debug/vim/src/main.c:795
+    #18 0x5644d0926ac3 in main /home/luna/tmp/debug/vim/src/main.c:444
+    #19 0x7f4f4d84db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+
+previously allocated by thread T0 here:
+    #0 0x7f4f4e4c7b40 in __interceptor_malloc (/usr/lib/x86_64-linux-gnu/libasan.so.4+0xdeb40)
+    #1 0x5644d0571c5b in lalloc /home/luna/tmp/debug/vim/src/misc2.c:925
+    #2 0x5644d0571af5 in alloc_clear /home/luna/tmp/debug/vim/src/misc2.c:852
+    #3 0x5644d02e8a85 in buflist_new /home/luna/tmp/debug/vim/src/buffer.c:2028
+    #4 0x5644d067709c in load_dummy_buffer /home/luna/tmp/debug/vim/src/quickfix.c:6189
+    #5 0x5644d0674abb in vgr_load_dummy_buf /home/luna/tmp/debug/vim/src/quickfix.c:5662
+    #6 0x5644d067598c in vgr_process_files /home/luna/tmp/debug/vim/src/quickfix.c:5927
+    #7 0x5644d06765f8 in ex_vimgrep /home/luna/tmp/debug/vim/src/quickfix.c:6072
+    #8 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #9 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #10 0x5644d06fc652 in do_source /home/luna/tmp/debug/vim/src/scriptfile.c:1365
+    #11 0x5644d06fa9d1 in cmd_source /home/luna/tmp/debug/vim/src/scriptfile.c:933
+    #12 0x5644d06faa3e in ex_source /home/luna/tmp/debug/vim/src/scriptfile.c:959
+    #13 0x5644d04348ed in do_one_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:2497
+    #14 0x5644d042b870 in do_cmdline /home/luna/tmp/debug/vim/src/ex_docmd.c:978
+    #15 0x5644d0429d84 in do_cmdline_cmd /home/luna/tmp/debug/vim/src/ex_docmd.c:589
+    #16 0x5644d092e102 in exe_commands /home/luna/tmp/debug/vim/src/main.c:3139
+    #17 0x5644d0927204 in vim_main2 /home/luna/tmp/debug/vim/src/main.c:795
+    #18 0x5644d0926ac3 in main /home/luna/tmp/debug/vim/src/main.c:444
+    #19 0x7f4f4d84db96 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x21b96)
+
+SUMMARY: AddressSanitizer: heap-use-after-free /home/luna/tmp/debug/vim/src/window.c:6101 in scroll_to_fraction
+Shadow bytes around the buggy address:
+  0x0c4a7fff98d0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c4a7fff98e0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c4a7fff98f0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c4a7fff9900: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x0c4a7fff9910: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+=>0x0c4a7fff9920:[fd]fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c4a7fff9930: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c4a7fff9940: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c4a7fff9950: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c4a7fff9960: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+  0x0c4a7fff9970: fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd fd
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==24917==ABORTING
